@@ -94,12 +94,12 @@ function Pixlr(pixlrSendImageUrl, pixlrCloseWindowUrl, opt_settings) {
         // image Url
         if(typeof(image) === 'string'){
             settings.image = absoluteUrl(image);
-            settings.title = image.substr(image.lastIndexOf('/'));
+            settings.title = image.substr(image.lastIndexOf('/') + 1);
             settings.target = absoluteUrl(pixlrSendImageUrl) + '?path=' + encodeURIComponent(image);
         }
         else{
             settings.image = getPixels(image);
-            settings.title = image.getAttribute('src').substr(image.getAttribute('src').lastIndexOf('/'));
+            settings.title = image.getAttribute('src').substr(image.getAttribute('src').lastIndexOf('/') + 1);
             settings.target = absoluteUrl(pixlrSendImageUrl) + '?path=' + encodeURIComponent(image.getAttribute('src'));
         }
         // the url of your backend service, as declared in node.js with app.get('/pixlr', pixlr.middleware);
@@ -126,7 +126,9 @@ function Pixlr(pixlrSendImageUrl, pixlrCloseWindowUrl, opt_settings) {
         // build the string for URL
         var queryString = '';
         for (var attribute in settings) {
-            queryString += encodeURIComponent(attribute) + '=' + encodeURIComponent(settings[attribute]) + '&'
+            if (settings[attribute] != undefined){
+                queryString += encodeURIComponent(attribute) + '=' + encodeURIComponent(settings[attribute]) + '&'
+            }
         }
         return 'http://pixlr.com/' + serviceName + '/?' + queryString;
     }

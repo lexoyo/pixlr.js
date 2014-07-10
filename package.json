@@ -1,0 +1,36 @@
+{
+  "name": "Pixlr.js",
+  "description": "Edit images in the cloud.",
+  "version": "0.0.1",
+  "author": "Alex Hoyau aka lexoyo",
+  "contributors": [
+  ],
+  "dependencies": {
+    "express": "^4.5.1"
+  },
+  "devDependencies": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lexoyo/pixlr.js"
+  },
+  "keywords": [
+    "express",
+    "cloud",
+    "cms",
+    "image",
+    "edit",
+    "cloud",
+    "pixlr",
+    "api"
+  ],
+  "main": "sample/server.js",
+  "license": "GPL",
+  "engines": {
+    "node": ">0.10.0",
+    "npm": ">1.3.0"
+  },
+  "scripts": {
+    "test": "echo \"No test specified\" && exit 0"
+  }
+}

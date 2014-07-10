@@ -14,11 +14,11 @@ app.get('/sendImage', function(req, res){
     // check security here
     // then write to a file or to a database
     var url = req.query.image;
-    var path = req.query.path;
+    var path = __dirname + '/' + req.query.path;
     console.log('/sendImage route', url, path);
     download(url, path, function (err) {
         if (!err){
-            res.redirect(200, '../close.html');
+            res.status(200).sendfile('close.html');
         }
         else{
             console.error('ERROR ', err);
@@ -29,8 +29,10 @@ app.get('/sendImage', function(req, res){
 app.use(express.static(__dirname));
 
 
-var server = app.listen(3000, function() {
-    console.log('Listening on port %d', server.address().port);
+// server 'loop'
+var port = process.env.PORT || 3000;
+var server = app.listen(port, function() {
+    console.log('Listening on port %d', port);
 });
 
 // download file locally
